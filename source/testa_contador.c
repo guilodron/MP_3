@@ -37,3 +37,15 @@ TEST_CASE("Funcao linhas_em_branco") {
         fclose(ptr_arq);
     }  // end SECTION("Arquivo comum")
 }  // end TEST_CASE("Funcao linhas_em_branco")
+TEST_CASE("Funcao linhas_comentadas") {
+    SECTION("Arquivo sem comentarios"){
+        ptr_arq = fopen("arquivo_comum.txt", "r");
+        REQUIRE(linhas_comentadas(ptr_arq) == 0);
+        fclose(ptr_arq);
+    }  // end SECTION("Arquivo sem comentarios")
+    SECTION("Arquivo com comentarios"){
+        ptr_arq = fopen("arquivo_comentado.txt", "r");
+        REQUIRE(linhas_comentadas(ptr_arq) == 5);
+        fclose(ptr_arq);
+    }  // end SECTION("Arquivo com comentarios")
+}  // end TEST_CASE("Funcao linhas_comentadas")

@@ -38,3 +38,27 @@ int linhas_em_branco(FILE* ptr) {
     }  // end while
     return linhas_em_branco + 2;
 }  // end linhas_em_branco()
+
+int linhas_comentadas(FILE* ptr) {
+    char c;
+    int linhas_comentadas = 0;
+    while (!feof(ptr)) {
+        c = fgetc(ptr);
+        if (c == '/') {
+            c = fgetc(ptr);
+            if (c  == '/') {
+                linhas_comentadas++;
+            }
+            if (c == '*') {
+                c = fgetc(ptr);
+                while (c != '*') {
+                    if (c == '\n')
+                        linhas_comentadas++;
+                    c = fgetc(ptr);
+                }  // end while
+            linhas_comentadas++;
+            }  // end if
+        }  // end if
+    }  // end while()
+    return linhas_comentadas;
+}  // end linhas_comentadas()
