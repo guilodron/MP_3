@@ -62,3 +62,13 @@ int linhas_comentadas(FILE* ptr) {
     }  // end while()
     return linhas_comentadas;
 }  // end linhas_comentadas()
+
+int num_linhas(FILE* ptr) {
+    int comentadas = linhas_comentadas(ptr);
+    rewind(ptr);
+    int total = total_linhas(ptr);
+    rewind(ptr);
+    int brancas = linhas_em_branco(ptr);
+    return total - brancas - comentadas;
+}  // end num_linhas()
+

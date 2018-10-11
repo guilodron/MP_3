@@ -49,3 +49,21 @@ TEST_CASE("Funcao linhas_comentadas") {
         fclose(ptr_arq);
     }  // end SECTION("Arquivo com comentarios")
 }  // end TEST_CASE("Funcao linhas_comentadas")
+TEST_CASE("Funcao num_linhas"){
+    SECTION("Arquivo de codigo"){
+    	ptr_arq = fopen("arquivo_comentado.txt", "r");
+    	REQUIRE(num_linhas(ptr_arq) == 6);
+    	fclose(ptr_arq);
+    }  // end SECTION("Arquivo de codigo")
+    SECTION("Arquivo vazio"){
+        ptr_arq = fopen("arquivo_vazio.txt", "r");
+        REQUIRE(num_linhas(ptr_arq) == 0);
+        fclose(ptr_arq);
+    }  // end SECTION("Arquivo Vazio")
+    SECTION("Arquivo com linhas brancas") {
+    	ptr_arq = fopen("arquivo_com_linhas_brancas.txt", "r");
+    	REQUIRE(num_linhas(ptr_arq) == 0);
+    	fclose(ptr_arq);
+    }  // end SECTION("Arquivo com linhas brancas")
+}  // end TEST_CASE("Funcao num_linhas")
+
