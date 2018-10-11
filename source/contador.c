@@ -19,3 +19,22 @@ int total_linhas(FILE* ptr) {
     return linhas + 1;
 }  // end total_linhas()
 
+int linhas_em_branco(FILE* ptr) {
+    char c;
+    int linhas_em_branco = 0;
+    c = fgetc(ptr);
+    if (c == EOF)
+        return 0;
+    fseek(ptr, -1, 1);
+    while (!feof(ptr)) {
+        c = fgetc(ptr);
+        if (c == '\n') {
+            c = fgetc(ptr);
+            if (c == '\n') {
+                linhas_em_branco++;
+                fseek(ptr, -1, 1);
+            }  // end if
+        }  // end if
+    }  // end while
+    return linhas_em_branco + 2;
+}  // end linhas_em_branco()
